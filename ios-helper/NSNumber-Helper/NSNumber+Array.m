@@ -10,6 +10,17 @@
 
 @implementation NSNumber (Array)
 
++(void)times:(NSUInteger)time cb:(void(^)(NSUInteger index))block{
+    NSUInteger total = ABS(time);
+    for (NSUInteger i = 0; i < total; i++) {
+        block(i);
+    }
+}
+
+-(void)times:(void(^)(NSUInteger index))block{
+    [self each:block];
+}
+
 - (void)each:(void (^)(NSUInteger))block
 {
     if (!block) return;
